@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test
+  namespace: my-app
+  labels:
+    role : nginx
+    owner: DimaK
+spec:
+  containers:
+    - name : app
+      image: nginx:1.25
+      ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  namespace: my-app
+spec:
+  type: NodePort
+  selector:
+    role: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
