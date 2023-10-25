@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-web-deployment-replicas
+  labels:
+    app: my-k8s-application
+    owner: DimaK
+    env: prod
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      project: kgb-replicas
+  template:
+    metadata:
+      labels:
+        project: kgb-replicas
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: project
+                    operator: In
+                    values:
+                      - kgb-replicas
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - name: kgb-web2
+          image: dimanyumovich/web-test:v02
+          ports:
+            - containerPort: 80

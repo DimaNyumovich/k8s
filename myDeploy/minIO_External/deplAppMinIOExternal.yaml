@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dima-k8s-pod-deployment-replicas
+  labels:
+    app: my-k8s-application
+    owner: DimaK
+    env: prod
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      project: dima-k8s-pod-deployment-replicas
+  template:
+    metadata:
+      labels:
+        project: dima-k8s-pod-deployment-replicas
+    spec:
+      containers:
+        - name: dima-k8s-container
+          image: dimanyumovich/dima-k8s:v10
+          ports:
+            - containerPort: 5000
+          env:
+            - name: ACCESS_KEY
+              value: "BF2yVrH489RxRaMvQ6fD"
+            - name: SECRET_KEY
+              value: "vn3G7Lbpc2yoD0vQ1S89hfsjHMIwTuMDBE0dXtDZ"
+            - name: ENDPOINT
+              value: "http://192.168.59.1:9000"
