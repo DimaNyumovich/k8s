@@ -3,7 +3,6 @@ kind: Pod
 metadata:
   name: dima-k8s-pod
 spec:
-  replicas: 2
   containers:
     - name: dima-k8s-container
       image: dimanyumovich/dima-k8s:v10
@@ -11,8 +10,8 @@ spec:
         - containerPort: 5000
       env:
         - name: ACCESS_KEY
-          value: "BF2yVrH489RxRaMvQ6fD"
+          value: "jDmWYPDWr2F4DOKeYHBZ"
         - name: SECRET_KEY
-          value: "vn3G7Lbpc2yoD0vQ1S89hfsjHMIwTuMDBE0dXtDZ"
+          value: "HBmcl8gqNKgOITTiX10wuyQnvHMoGkESppdy2F8U"
         - name: ENDPOINT
           value: "http://192.168.59.1:9000"
