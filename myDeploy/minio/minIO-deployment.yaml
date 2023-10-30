@@ -12,9 +12,13 @@ spec:
       labels:
         app: minio
     spec:
+#      securityContext:
+#        runAsUser: 1000
+#        runAsGroup: 1000
       containers:
         - name: minio
-          image: quay.io/minio/minio
+          image: quay.io/minio/minio:latest
+          imagePullPolicy: IfNotPresent  # You can set to "Always" if needed
           ports:
             - containerPort: 9000
             - containerPort: 9001
@@ -23,8 +27,12 @@ spec:
               value: dimanyumovich
             - name: MINIO_ROOT_PASSWORD
               value: karnaval
-          command:
-            - "server"
-            - "/data"
-            - "--console-address"
-            - ":9001"
+#          volumeMounts:
+#            - name: data
+#              mountPath: /data
+          command: ["minio"]
+          args: ["server", "/data", "--console-address", ":9001"]
+#      volumes:
+#        - name: data
+#          persistentVolumeClaim:
+#            claimName: fileshare
