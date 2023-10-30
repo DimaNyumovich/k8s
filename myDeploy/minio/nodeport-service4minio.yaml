@@ -1,12 +1,33 @@
-  apiVersion: v1
-  kind: Service
-  metadata:
-    name: service4minio
-  spec:
-    selector:
-      project: minio-deployment
-    ports:
-      - protocol: TCP
-        port: 9000  # The port on the Service
-        targetPort: 9000  # The port on the Pods in the Deployment
-    type: NodePort  # Change this to NodePort or LoadBalancer if needed
+#  apiVersion: v1
+#  kind: Service
+#  metadata:
+#    name: service4minio
+#  spec:
+#    selector:
+#      matchLabels:
+#        app: minio
+##    selector:
+##      project: minio-deployment
+#    ports:
+#      - protocol: TCP
+#        port: 9000  # The port on the Service
+#        targetPort: 9000  # The port on the Pods in the Deployment
+#    type: NodePort  # Change this to NodePort or LoadBalancer if needed
+apiVersion: v1
+kind: Service
+metadata:
+  name: service4minio
+spec:
+  selector:
+    matchLabels:
+      app: minio
+  ports:
+    - name: port-9000
+      protocol: TCP
+      port: 9000
+      targetPort: port-9000
+    - name: port-9001
+      protocol: TCP
+      port: 9001
+      targetPort: port-9001
+  type: NodePort

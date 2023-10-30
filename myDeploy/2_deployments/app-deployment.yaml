@@ -23,8 +23,8 @@ spec:
             - containerPort: 5000
           env:
             - name: ACCESS_KEY
-              value: "lSPYfRtHgON7jPEkqsdW"
+              value: "cQzRxV9t4v9kc9ZrNIVo"
             - name: SECRET_KEY
-              value: "3xqoC6OShV20JpBzMfr49NOfBoRITjzcgtjSGGpU"
+              value: "0X4kww6peSpTc69ML3oc1bzjRQYVrVnWVK8NZCQO"
             - name: ENDPOINT
-              value: "http://192.168.59.1:9000"
+              value: "http://10.100.13.76:9000"
