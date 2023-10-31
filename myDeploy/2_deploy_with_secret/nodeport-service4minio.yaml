@@ -1,0 +1,19 @@
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: service4minio
+  spec:
+    selector:
+      project: minio-deployment
+    ports:
+      - name: port-9000
+        protocol: TCP
+        port: 9000  # The port on the Service
+        targetPort: port-9000  # The port on the Pods in the Deployment
+      - name: port-9001
+        protocol: TCP
+        port: 9001  # The port on the Service
+        targetPort: port-9001  # The port on the Pods in the Deployment
+    type: NodePort  # Change this to NodePort or LoadBalancer if needed
+
+

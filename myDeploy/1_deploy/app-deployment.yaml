@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dima-k8s-pod-deployment-replicas
+  labels:
+    app: my-k8s-application
+    owner: DimaK
+    env: prod
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      project: dima-k8s-pod-deployment-replicas
+  template:
+    metadata:
+      labels:
+        project: dima-k8s-pod-deployment-replicas
+    spec:
+      containers:
+        - name: dima-k8s-container
+          image: dimanyumovich/dima-k8s:v10
+          ports:
+            - containerPort: 5000
+          env:
+            - name: ACCESS_KEY
+              value: "ZcQvSYA5Yspdykf5c4yO"
+            - name: SECRET_KEY
+              value: "nuG6nWypzNtoyAxYmiEv6wX8qVMHczFM1bie5jWM"
+            - name: ENDPOINT
+              value: "http://192.168.1.40:9000"
+          volumeMounts:
+            - name: data
+              mountPath: /app/static/Image
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: fileshare

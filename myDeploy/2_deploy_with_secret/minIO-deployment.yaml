@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio-deployment
+  labels:
+    app: my-k8s-application
+    owner: DimaK
+    env: prod
+spec:
+  replicas: 1  # You can adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      project: minio-deployment
+  template:
+    metadata:
+      labels:
+        project: minio-deployment
+    spec:
+      containers:
+        - name: minio
+          image: quay.io/minio/minio:latest
+          imagePullPolicy: IfNotPresent  # You can set to "Always" if needed
+          ports:
+            - name: port-9000
+              containerPort: 9000
+            - name: port-9001
+              containerPort: 9001
+          env:
+            - name: MINIO_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minio-credentials
+                  key: MINIO_ACCESS_KEY
+            - name: MINIO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minio-credentials
+                  key: MINIO_SECRET_KEY
+            - name: MINIO_ROOT_USER
+              value: dimanyumovich
+            - name: MINIO_ROOT_PASSWORD
+              value: karnaval
+#          volumeMounts:
+#            - name: data
+#              mountPath: /data
+          command:
+            - "minio"
+            - "server"
+            - "/tmp"
+            - "--console-address"
+            - ":9001"
+#          command: ["minio"]
+#          args: ["server", "/data", "--console-address", ":9001"]
+#      volumes:
+#        - name: data
+#          persistentVolumeClaim:
+#            claimName: fileshare
