@@ -18,20 +18,21 @@ spec:
     spec:
       containers:
         - name: dima-k8s-container
-          image: dimanyumovich/dima-k8s:1.0
+          image: dimanyumovich/dima-k8s:2.0
+          imagePullPolicy: Always
           ports:
             - containerPort: 5000
           env:
             - name: ACCESS_KEY
-              value: "ZcQvSYA5Yspdykf5c4yO"
+              value: "h2JJBBdq2FnHqwUomY5m"
             - name: SECRET_KEY
-              value: "nuG6nWypzNtoyAxYmiEv6wX8qVMHczFM1bie5jWM"
+              value: "pVikrslK9XKnoZtRh6SeJJL7gS7tGXPVYLvXsgvS"
             - name: ENDPOINT
               value: "http://192.168.1.40:9000"
-          volumeMounts:
-            - name: data
-              mountPath: /app/static/Image
-      volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: fileshare
+#          volumeMounts:
+#            - name: data
+#              mountPath: /app/static/Image
+#      volumes:
+#        - name: data
+#          persistentVolumeClaim:
+#            claimName: fileshare
