@@ -1,5 +1,0 @@
-# My Custom values for Helm Chart
-container:
-  image: dimanyumovich/dima-k8s:latest
-
-replicaCount: 2
