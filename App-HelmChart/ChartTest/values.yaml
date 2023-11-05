@@ -1,0 +1,6 @@
+# Default Values for my Helm Chart
+
+container:
+  image: dimanyumovich/dima-k8s:2.0
+
+replicaCount: 1

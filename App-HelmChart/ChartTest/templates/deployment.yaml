@@ -1,0 +1,29 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deployment
+  labels:
+    app : {{ .Release.Name }}-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      project: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        project: {{ .Release.Name }}   # Service will look for those PODS Labels!!!
+    spec:
+      containers:
+        - name : {{ .Release.Name }}-web
+          image: {{ .Values.container.image }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+          env:
+            - name: ACCESS_KEY
+              value: "h2JJBBdq2FnHqwUomY5m"
+            - name: SECRET_KEY
+              value: "pVikrslK9XKnoZtRh6SeJJL7gS7tGXPVYLvXsgvS"
+            - name: ENDPOINT
+              value: "http://192.168.1.40:9000"
