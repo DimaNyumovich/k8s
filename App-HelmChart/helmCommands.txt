@@ -2,10 +2,10 @@ https://helm.sh/
 
 helm list
 helm install app ChartTest
-helm uninstall app ChartTest
-helm install app1 ChartTest
-helm install app1 ChartTest/ --set container/image=dimanyumovich/dima-k8s:1.0 --set replicaCount=2
-helm upgrade app1 ChartTest/ --set container/image=dimanyumovich/dima-k8s:1.0 --set replicaCount=3
+helm uninstall app
+helm install app1 ChartTest -f ChartTest/prod-values.yaml
+helm install app1 ChartTest/ --set container.image=dimanyumovich/dima-k8s:1.0 --set replicaCount=2
+helm upgrade app1 ChartTest/ --set container.image=dimanyumovich/dima-k8s:1.0 --set replicaCount=3
 helm package ChartTest/
 helm install app4 App-HelmChart-0.1.0.tgz
 

@@ -1,0 +1,22 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name   : demo-dev
+  region : eu-central-1
+  version: "1.27"
+
+#vpc:
+#  id:
+#  subnets:
+#    public:.......
+
+managedNodeGroups:
+  - name             : general
+    instanceType     : t3.small
+    desiredCapacity  : 3
+    labels:
+      role: general-node
+      environment: development
+    volumeSize       : 70
+    privateNetworking: false
