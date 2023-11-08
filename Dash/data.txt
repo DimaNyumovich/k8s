@@ -12,5 +12,5 @@ https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
 
 ->
 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/.
-   and over there insert token
+   and there insert token
 

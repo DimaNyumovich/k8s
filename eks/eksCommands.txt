@@ -1,0 +1,7 @@
+eksctl create cluster --name dima-k8s
+eksctl delete cluster --name dima-k8s
+
+eksctl create cluster -f eksConfig.yaml
+eksctl delete cluster -f eksConfig.yaml
+
+kubectl cluster-info

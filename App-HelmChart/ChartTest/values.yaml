@@ -3,4 +3,4 @@
 container:
   image: dimanyumovich/dima-k8s:2.0
 
-replicaCount: 1
+replicaCount: 2
