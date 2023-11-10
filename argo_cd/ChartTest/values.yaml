@@ -3,6 +3,6 @@
 container:
   image: dimanyumovich/dima-k8s:3.0
 
-replicaCount: 2
+replicaCount: 4
 
 appname: test2
